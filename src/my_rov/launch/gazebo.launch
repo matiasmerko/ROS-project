@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <!-- Load the DuckBot URDF model into parameter server -->
+	<param name="robot_description" textfile="$(find my_rov)/urdf/my_rov.urdf"/>
+
+	<include file="$(find gazebo_ros)/launch/empty_world.launch"/>
+	
+	<!-- Spawn a tortoisebot in Gazebo taking description from parameter server -->
+	<node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model my_rov -x 0 -y 0"/>
+
+	<!-- Robot state publisher -->
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+</launch>
